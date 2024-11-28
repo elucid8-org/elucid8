@@ -1,0 +1,46 @@
+=begin rakudoc
+=TITLE Elucid8 plan and deliverables.
+
+=head Description of Elucid8
+
+B<Elucid8> is a framework to create, manage and publish complex multilingual documentation.
+
+=nested To be clear a computer language, such as I<RakuDoc>, is indicated as B<c-language>, while
+a human language, such as I<English>, is indicated as B<h-language>.
+
+It is based on source documents written in a canonical h-language (not necessarily English) and derived documents
+in other h-languages, all of which are marked up in RakuDoc.
+
+The content file h-language and the navigation h-language are orthogonal, meaning that a change in the content
+h-language does not change the navigation h-language, and vice versa.
+
+Editing of the content files is managed using I<github> or I<gitlab>.
+
+The derived h-language content files are synchronised to the canonical h-language content files. Changes in
+any canonical file will trigger styling changes in the corresponding section of the derived files.
+
+=nested A starting assumption is that there is only one canonical h-language and that changes in derived h-language
+content files do not trigger styling changes in canonical sources.
+
+By keeping all canonical and derived content and navigation sources on I<github> or I<gitlab>, editing access
+to each h-language can be managed giving commit permissions to different human editors on h-language level.
+
+The initial publication target will be a headless website in HTML, with dynamic content provided by exposure
+to microservices. The microservice may be an external provider, such as a tile server for maps, or a separate
+CRO server that sends product data from a company server in response to websocket requests.
+
+=head Deliverables
+
+=item A generalised Renderer that takes multiple source files from a git-type repository and generates a static website
+=item2 The test case will be the Raku documentation suite.
+=item The navigation UI for the website is written in RakuDoc, and also sourced from a git-type repository
+=item A derived language suite of documents is created with AI translation and synchronisation between h-languages
+=item2 Access to the derived language during a drafting stage is restricted
+=item2 Switching from a section in the canonical h-language takes the reader to the synchonised section in the derived page.
+=item Web based editing of the content in the sources is enabled
+=item A synchronisation utility is created to ensure that all derived sources are synchronised to the canonical sources
+=item2 Checks that each derived source matches the canonical source, with the following initial checks:
+=item3 For every section in the canonical source, there is a section in the derived source (no omissions)
+=item3 Every section in every derived source has a corresponding canonical source (no extra text)
+
+=end rakudoc
