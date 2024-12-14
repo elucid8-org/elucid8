@@ -1,16 +1,19 @@
 
 # Design for elucid8
 
-	<span class="para" id="fa45dfb"></span>This is a description of the design of the **elucid8 explanation framework**. It is currently a work in progress and the API described here will change. [Link back to README](README.txt) 
+----
+
+## Table of Contents
+
+<a href="#Introduction">Introduction</a>   
+<a href="#Workflow">Workflow</a>   
 
 
 
 ----
 
-## Table of Contents
-
-<a href="#Workflow">Workflow</a>   
-
+## Introduction<div id="Introduction"> </div>
+<span class="para" id="fa45dfb"></span>This is a description of the design of the **elucid8 explanation framework**. It is currently a work in progress and the API described here will change. [Link back to README](README.txt) 
 
 
 ----
@@ -50,7 +53,7 @@ Goto [loop entry]
 
 ----
 
-Rendered from docs/Design.rakudoc/Design at 15:42 UTC on 2024-12-14
+Rendered from docs/Design.rakudoc/Design at 15:58 UTC on 2024-12-14
 
-Source last modified at 15:41 UTC on 2024-12-14
+Source last modified at 15:57 UTC on 2024-12-14
 
