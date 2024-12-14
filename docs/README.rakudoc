@@ -13,6 +13,8 @@ v0.1.0
 
 B<Elucid8> is a framework to create, manage and publish complex multilingual documentation.
 
+A separate L<design document|Design.*> shows the workflows.
+
 =nested To be clear a computer language, such as I<RakuDoc>, is indicated as B<c-language>, while
 a human language, such as I<English>, is indicated as B<h-language>.
 

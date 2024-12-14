@@ -1,0 +1,43 @@
+=begin rakudoc
+=TITLE Design for elucid8
+=for AUTHOR :hidden
+Richard Hainsworth, finanalyst
+
+=for VERSION :hidden
+0.1.0
+
+=SUBTITLE This is a description of the design of the B<elucid8 explanation framework>.
+It is currently a work in progress and the API described here will change.
+L<Link back to README|README.*>
+
+=head Workflow
+
+There will be several separate workflows, which will be included in the diagram below.
+In addition, there will be several entry-points.
+But for the time being the following is a first approximation:
+=begin code :allow<B I>
+Initial state, no Rakudoc sources
+|                                        |<-------- convert from other formats
+Create canonical Rakudoc sources  <------|<-------- existing RakuDoc sources (eg. docs.raku)
+|
+Create canonical navigation RakuDoc sources
+|
+|<---------------------------------------- add a derivative language from canonical sources
+[loop entry] Obtain last edit dates for all blocks in all canonical sources
+|
+Compare or Generate the B<Document registry>
+|
+Generate web-site from all sources, only generating files that have changes
+|
+Edit canonical or derived file
+|               ^
+|               |
+Review by authorised editor dependent on language
+|
+Authorise change
+|
+Goto [loop entry]
+
+=end code
+
+=end rakudoc
