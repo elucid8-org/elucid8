@@ -6,7 +6,9 @@ Richard Hainsworth, finanalyst
 =for VERSION :hidden
 0.1.0
 
-=SUBTITLE This is a description of the design of the B<elucid8 explanation framework>.
+=head Introduction
+
+This is a description of the design of the B<elucid8 explanation framework>.
 It is currently a work in progress and the API described here will change.
 L<Link back to README|README.*>
 
