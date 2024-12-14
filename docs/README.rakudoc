@@ -1,6 +1,14 @@
 =begin rakudoc
 =TITLE Elucid8 plan and deliverables.
 
+=begin AUTHORS :hidden
+=item Richard Hainsworth, @finanalyst
+=item Stephen Roe, @librasteve
+=end AUTHORS
+
+=for VERSION :hidden
+v0.1.0
+
 =head Description of Elucid8
 
 B<Elucid8> is a framework to create, manage and publish complex multilingual documentation.
@@ -42,5 +50,9 @@ CRO server that sends product data from a company server in response to websocke
 =item2 Checks that each derived source matches the canonical source, with the following initial checks:
 =item3 For every section in the canonical source, there is a section in the derived source (no omissions)
 =item3 Every section in every derived source has a corresponding canonical source (no extra text)
+
+=place semantic:AUTHORS
+
+=place semantic:VERSION
 
 =end rakudoc
