@@ -17,6 +17,8 @@
 ## Description of Elucid8<div id="Description_of_Elucid8"> </div>
 <span class="para" id="14e6938"></span>**Elucid8** is a framework to create, manage and publish complex multilingual documentation. 
 
+<span class="para" id="556a167"></span>A separate [design document](Design.md) shows the workflows. 
+
 > <span class="para" id="c27bc80"></span>To be clear a computer language, such as *RakuDoc*, is indicated as **c-language**, while a human language, such as *English*, is indicated as **h-language**. 
 
 
@@ -78,7 +80,7 @@ v0.1.0
 
 ----
 
-Rendered from docs/README.rakudoc/README at 11:22 UTC on 2024-12-14
+Rendered from docs/README.rakudoc/README at 17:29 UTC on 2024-12-14
 
-Source last modified at 11:21 UTC on 2024-12-14
+Source last modified at 17:29 UTC on 2024-12-14
 
