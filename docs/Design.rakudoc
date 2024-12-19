@@ -4,7 +4,7 @@
 Richard Hainsworth, finanalyst
 
 =for VERSION :hidden
-0.1.0
+0.2.0
 
 =head Introduction
 
@@ -17,29 +17,72 @@ L<Link back to README|README.*>
 There will be several separate workflows, which will be included in the diagram below.
 In addition, there will be several entry-points.
 But for the time being the following is a first approximation:
-=begin code :allow<B I>
-Initial state, no Rakudoc sources
-|                                        |<-------- convert from other formats
-Create canonical Rakudoc sources  <------|<-------- existing RakuDoc sources (eg. docs.raku)
-|
-Create canonical navigation RakuDoc sources
-|
-|<---------------------------------------- add a derivative language from canonical sources
-[loop entry] Obtain last edit dates for all blocks in all canonical sources
-|
-Compare or Generate the B<Document registry>
-|
-Generate web-site from all sources, only generating files that have changes
-|
-Edit canonical or derived file
-|               ^
-|               |
-Review by authorised editor dependent on language
-|
-Authorise change
-|
-Goto [loop entry]
-
-=end code
+=begin Graphviz :caption<Flow diagram>
+digraph G {
+    graph [
+		label = "Basic flows\n\n"
+		labelloc = t
+		fontname = "Helvetica,Arial,sans-serif"
+		fontsize = 20
+		layout = dot
+		rankdir = LR
+		newrank = true
+	]
+	node [
+		style=filled
+		shape=rect
+		pencolor="#00000044" // frames color
+		fontname="Helvetica,Arial,sans-serif"
+		shape=plaintext
+	]
+	edge [
+		arrowsize=0.5
+		fontname="Helvetica,Arial,sans-serif"
+		labeldistance=3
+		labelfontcolor="#00000080"
+		penwidth=2
+		style=dotted // dotted style symbolizes data transfer
+	]
+    other [
+        label="Documentation in other formats"
+    ]
+    existing [
+        label="Existing RakuDoc sources (eg. docs.raku.org)"
+    ]
+    canonical [
+        label="Create canonical sources"
+    ]
+    other -> existing [ label="convert to RakuDoc" ]
+    existing -> canonical [ label="pull from repo" ]
+    navigation [
+        label="Create navigation RakuDocs"
+    ]
+    canonical -> navigation
+    derivative [
+        label="add a derivative language from canonical sources"
+    ]
+    startup [
+        label="Obtain last edit dates for all blocks in all canonical sources"
+    ]
+    navigation -> startup
+    derivative -> startup
+    register [
+        label="Generate <b>Document Registry</b>
+    ]
+    startup -> register
+    generate [
+        label="Generate web-site from new/modified sources"
+    ]
+    publish [
+        label="Publication on web-site"
+    ]
+    generate -> publish
+    edit [
+        label="Edit file"
+    ]
+    publish -> edit [ label="editing permission by derivative language" ]
+    edit -> startup [ label="authorisation by derivative language" ]
+}
+=end Graphviz
 
 =end rakudoc
