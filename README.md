@@ -12,9 +12,9 @@
 
 
 
-----
+<div id="Description of Elucid8"></div><div id="Description_of_Elucid8"></div>
 
-## Description of Elucid8<div id="Description_of_Elucid8"> </div>
+## Description of Elucid8
 <span class="para" id="14e6938"></span>**Elucid8** is a framework to create, manage and publish complex multilingual documentation. 
 
 <span class="para" id="556a167"></span>A separate [design document](Design.md) shows the workflows. 
@@ -37,10 +37,9 @@
 
 <span class="para" id="53b0ed2"></span>The initial publication target will be a headless website in HTML, with dynamic content provided by exposure to microservices. The microservice may be an external provider, such as a tile server for maps, or a separate CRO server that sends product data from a company server in response to websocket requests. 
 
+<div id="Deliverables"></div>
 
-----
-
-## Deliverables<div id="Deliverables"> </div>
+## Deliverables
 
 
 &nbsp;&nbsp;• A generalised Renderer that takes multiple source files from a git-type repository and generates a static website  
@@ -55,9 +54,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;‣ For every section in the canonical source, there is a section in the derived source (no omissions)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;‣ Every section in every derived source has a corresponding canonical source (no extra text)  
 
-----
+<div id="AUTHORS"></div><div id="AUTHORS_0"></div>
 
-## AUTHORS<div id="AUTHORS_0"> </div>
+## AUTHORS
 
 
 &nbsp;&nbsp;• Richard Hainsworth, @finanalyst  
@@ -67,12 +66,10 @@
 
 
 
-----
+<div id="VERSION"></div><div id="VERSION_0"></div>
 
-## VERSION<div id="VERSION_0"> </div>
-v0.1.0
-
-
+## VERSION
+ <div class="rakudoc-version">v0.1.0</div> 
 
 
 
@@ -80,7 +77,7 @@ v0.1.0
 
 ----
 
-Rendered from docs/README.rakudoc/README at 17:29 UTC on 2024-12-14
+Rendered from docs/README.rakudoc/README at 22:17 UTC on 2024-12-19
 
-Source last modified at 17:29 UTC on 2024-12-14
+Source last modified at 22:17 UTC on 2024-12-19
 
