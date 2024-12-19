@@ -67,7 +67,7 @@ digraph G {
     navigation -> startup
     derivative -> startup
     register [
-        label="Generate <b>Document Registry</b>
+        label="Generate <b>Document Registry</b>"
     ]
     startup -> register
     generate [
