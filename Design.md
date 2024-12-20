@@ -32,7 +32,7 @@
 
 ----
 
-Rendered from docs/Design.rakudoc/Design at 10:45 UTC on 2024-12-20
+Rendered from docs/Design.rakudoc/Design at 10:56 UTC on 2024-12-20
 
-Source last modified at 10:44 UTC on 2024-12-20
+Source last modified at 10:55 UTC on 2024-12-20
 
