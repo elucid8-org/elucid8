@@ -20,7 +20,7 @@ jobs:
                 image: finanalyst/rakuast-rakudoc-render:latest
                 registry: docker.io
                 options: -v ${{github.workspace}}/docs:/docs -v ${{github.workspace}}:/to
-                run: RenderDocs --to=/to ; ls /to
+                run: RenderDocs -v; RenderDocs --to=/to ; ls /; ls /to
             - name: Commit and Push changes
               uses: Andro999b/push@v1.3
               with:
