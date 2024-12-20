@@ -25,7 +25,6 @@ digraph G {
 		fontname = "Helvetica,Arial,sans-serif"
 		fontsize = 20
 		layout = dot
-		rankdir = LR
 		newrank = true
 	]
 	node [
@@ -43,45 +42,54 @@ digraph G {
 		penwidth=2
 		style=dotted // dotted style symbolizes data transfer
 	]
+    navigation [
+        label="Create navigation\nRakuDocs"
+    ]
     other [
-        label="Documentation in other formats"
+        label="Documentation\nin other formats"
     ]
     existing [
-        label="Existing RakuDoc sources (eg. docs.raku.org)"
+        label="Existing RakuDoc sources\n(eg. docs.raku.org)"
     ]
+    { rank=same navigation existing other }
     canonical [
-        label="Create canonical sources"
+        label="Create & pool\ncanonical sources"
     ]
-    other -> existing [ label="convert to RakuDoc" ]
-    existing -> canonical [ label="pull from repo" ]
-    navigation [
-        label="Create navigation RakuDocs"
+    other -> canonical [ label="convert\nto\nRakuDoc" ]
+    existing -> canonical [ label="pull\nfrom\nrepo" ]
+    new_derivative [
+        label="add new\nderivative language\nfrom canonical\n& navigation"
     ]
-    canonical -> navigation
+    new_derivative -> derivative
+    navigation -> startup
     derivative [
-        label="add a derivative language from canonical sources"
+        label="pool\nderivative language sources"
     ]
     startup [
-        label="Obtain last edit dates for all blocks in all canonical sources"
+        label="Obtain last edit dates\nfor all blocks in all\npools"
     ]
-    navigation -> startup
+    navigation -> new_derivative
+    canonical -> new_derivative
     derivative -> startup
     register [
-        label="Generate <b>Document Registry</b>"
+        label="Generate Document Registry"
     ]
     startup -> register
     generate [
-        label="Generate web-site from new/modified sources"
+        label="Generate web-site\nfrom new/modified\nsources"
     ]
+    register -> generate
     publish [
         label="Publication on web-site"
     ]
     generate -> publish
     edit [
-        label="Edit file"
+        label="Edit sources"
     ]
-    publish -> edit [ label="editing permission by derivative language" ]
-    edit -> startup [ label="authorisation by derivative language" ]
+    publish -> edit [ label="edit suggestions public" ]
+    edit -> derivative [ label="authorisation by\nderivative language" ]
+    edit -> canonical [ label="authorisation by\ndeveloper" ]
+   { rank=same publish edit }
 }
 =end Graphviz
 
