@@ -1,1 +1,1 @@
-RenderDocs --to=/to ; ls /to
+RenderDocs -v; RenderDocs --to=/to ; ls /; ls /to
