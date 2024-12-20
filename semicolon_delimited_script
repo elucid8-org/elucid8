@@ -1,1 +1,1 @@
-RenderDocs -v; RenderDocs --to=/to ; ls /; ls /to
+RenderDocs -v; RenderDocs --to=/to ; echo 'cwd'; ls /; echo '/to'; ls /to
