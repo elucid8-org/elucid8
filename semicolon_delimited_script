@@ -1,1 +1,1 @@
-RenderDocs -v; RenderDocs --to=/to ; echo 'cwd'; ls /; echo '/to'; ls /to
+RenderDocs -v; RenderDocs --to=/to --src=/docs --force; echo 'dir of cwd:'; ls /; echo 'dir of /to:'; ls /to
