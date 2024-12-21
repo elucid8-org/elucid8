@@ -108,7 +108,7 @@ The approach can be illustrated as follows:
 =begin Graphviz :caption<Dynamic site> :headlevel(2)
     digraph G2 {
         graph [
-            label = "Basic flows\n\n"
+            label = "Dynamic example\n\n"
             labelloc = t
             fontname = "Helvetica,Arial,sans-serif"
             fontsize = 20
@@ -150,7 +150,7 @@ The approach can be illustrated as follows:
 
 Although dynamic websites allow for user interaction, there are three disadvantages
 =begin section
-=config item :bullet«\c[heavy ballot x]»
+=config item :bullet«\x274E»
 =item A host site is needed for the server and the database
 =item Requesting page fragments and data requests complicates the server logic
 =item If most of the webpage is unchanged, it could be cached, thus increasing the response speed
@@ -167,7 +167,7 @@ from a stock market, and product information from a supplier. This can be illust
 =begin Graphviz :caption<Headless page with micro-services> :headlevel(2)
 digraph G3 {
     graph [
-		label = "Basic flows\n\n"
+		label = "Headless example\n\n"
 		labelloc = t
 		fontname = "Helvetica,Arial,sans-serif"
 		fontsize = 20
@@ -236,5 +236,58 @@ data server needs to be authenticated, and can be developed separately
 =item Page content and data base security are separated
 =end section
 
+=head Navigation and information
+
+The aim is for the language of the menus and user controls (the UI or User Interface or Navigation)
+to be changeable without changing the language of the content, and vice versa.
+=begin section
+=config item :bullet« \c[Earth Globe Europe-Africa] »
+This means that:
+=item the translation of each item of the navigation needs to be included/or available
+in each page of content
+=item since L<plugins|#Plugin policy> may provide UI information, there needs to be
+an interface for possible translations so that a new derivative set can be made.
+=item In addition to text elements, localisation requires changes in the presentation
+of time, currency, etc.
+
+Some standarisation is needed for defining languages, both navigation and content.
+=item Languages will be denoted using the ISO 639 2-letter codes
+=item Alternative words/spellings may be supplied using ISO 3166-1 2-letter codes
+
+The following is the first approach:
+=item All UI will be provided by plugins
+=item Templates for user-facing UI content may only contain C<ui-token>s.
+=item A C<ui-token> must be unique across the web-site, so typically plugins
+will append their names to the token name.
+=item A C<ui-token> is either a string, or a callable that evaluates to a string.
+=begin item
+Plugins will generate a hash called C<ui-tokens> with the structure
+C«2-letter -> TOKEN -> 'string'», for example,
+=begin code
+    ui-tokens => %(
+        en => %(
+           COL => 'colour',
+           MENU => 'Menu',
+           SEARCH => 'Search',
+           MODIFIED => -> $mod-inst { sprintf( "Modified at %02d:%02d on %s", .hour, .minute, .dd-mm-yyyy) with $mod-inst.DateTime }
+       ),
+       en-US %(
+           COL => 'color',
+           MODIFIED => -> $mod-inst { sprintf( "Modified at %02d:%02d on %s", .hour, .minute, .mm-dd-yyyy) with $mod-inst.DateTime }
+       ),
+       cy => %(
+           COL => 'lliw',
+           MENU => 'Menw',
+           SEARCH => 'Chwilia',
+       ),
+   ),
+=end code
+=end item
+=item When a C<ui-token> is missing in a derived language is missing, the C<ui-token> in the canonical
+language is used.
+=item When a C<ui-token> in a regional variant is missing, it is replaced by the C<ui-token> in the
+two-letter hash of the derived language
+
+=end section
 
 =end rakudoc
