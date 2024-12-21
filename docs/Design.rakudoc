@@ -17,8 +17,8 @@ L<Link back to README|README.*>
 There will be several separate workflows, which will be included in the diagram below.
 In addition, there will be several entry-points.
 But for the time being the following is a first approximation:
-=begin Graphviz :caption<Flow diagram>
-digraph G {
+=begin Graphviz :caption<Flow diagram> :headlevel(2)
+digraph G1 {
     graph [
 		label = "Basic flows\n\n"
 		labelloc = t
@@ -92,5 +92,149 @@ digraph G {
    { rank=same publish edit }
 }
 =end Graphviz
+
+=head Website deployment
+
+The aim is to create a website that consists of cachable pages, but still allows for user interaction.
+
+When web servers provided the whole web page, web sites tended to be considered either static or dynamic.
+
+Most web sites will involve
+interaction with the user, for example, authentication, or updating information. A common mechanism for
+interaction is to create each page on a host server with a new page generated depending on user interaction.
+These were called I<dynamic> web sites.
+
+The approach can be illustrated as follows:
+=begin Graphviz :caption<Dynamic site> :headlevel(2)
+    digraph G2 {
+        graph [
+            label = "Basic flows\n\n"
+            labelloc = t
+            fontname = "Helvetica,Arial,sans-serif"
+            fontsize = 20
+            rankdir = LR
+            layout = dot
+            newrank = true
+        ]
+        node [
+            style=filled
+            shape=rect
+            pencolor="#00000044" // frames color
+            fontname="Helvetica,Arial,sans-serif"
+            shape=plaintext
+        ]
+        edge [
+            arrowsize=0.5
+            fontname="Helvetica,Arial,sans-serif"
+            labeldistance=3
+            labelfontcolor="#00000080"
+            penwidth=2
+            style=dotted // dotted style symbolizes data transfer
+        ]
+        database [
+            label="SQL database\nFragments of\nHTML pages"
+        ]
+        server [
+            label="Web Server\nStatic IP\Compile pages\n\tfrom fragments\n\tfrom requests"
+        ]
+        user [
+            label="Browser\nrenders full webpage"
+        ]
+        database -> server [ label="fragments & data" ]
+        server -> database [ label= "SQL requests" ]
+        server -> user [ label="Full web page" ]
+        user -> server [ label="Data request" ]
+    }
+=end Graphviz
+=para
+
+Although dynamic websites allow for user interaction, there are three disadvantages
+=begin section
+=config item :bullet«\c[heavy ballot x]»
+=item A host site is needed for the server and the database
+=item Requesting page fragments and data requests complicates the server logic
+=item If most of the webpage is unchanged, it could be cached, thus increasing the response speed
+for the user
+=end section
+
+After the development of interactive elements such as web sockets, a web page can be created that
+contains javascript libraries and named C< <div> > elements such that data can be drawn from
+arbitrary data sources not located on the host that published the web page. Consequently, the
+entire page can be cached.
+
+Consider a web page that shows a map using tiles taken from a map provider, market information
+from a stock market, and product information from a supplier. This can be illustrated as follows:
+=begin Graphviz :caption<Headless page with micro-services> :headlevel(2)
+digraph G3 {
+    graph [
+		label = "Basic flows\n\n"
+		labelloc = t
+		fontname = "Helvetica,Arial,sans-serif"
+		fontsize = 20
+		layout = dot
+		newrank = true
+	]
+	node [
+		style=filled
+		shape=rect
+		pencolor="#00000044" // frames color
+		fontname="Helvetica,Arial,sans-serif"
+		shape=plaintext
+	]
+	edge [
+		arrowsize=0.5
+		fontname="Helvetica,Arial,sans-serif"
+		labeldistance=3
+		labelfontcolor="#00000080"
+		penwidth=2
+		style=dotted
+	]
+	subgraph factory {
+	    color=blue
+	    source [ label="Server of web page" ]
+	    supplier [ label="Factory suppling product" ]
+    }
+
+	source -> cache [ label="Pushed to cloud once" ]
+	cache [ label="Cache server/on internet" ]
+	{ rank=same source cache }
+	cache -> user [ label="Static content of page" ]
+	user [
+	    fillcolor="#88ff0022"
+		label=<<table border="0" cellborder="1" cellspacing="0" cellpadding="3">
+		    <tr><td colspan="3">User</td></tr>
+		    <tr>
+			    <td>Section with map</td>
+			    <td>Section with products</td>
+			    <td>Section with stock prices</td>
+            </tr>
+			<tr>
+			    <td port="map" >Websocket\npointing at\ntile server</td>
+			    <td port="products" >Websocket\npointing at\nfactory</td>
+			    <td port="stock">Websocket\npointing at\nstock market</td>
+            </tr>
+		</table>>
+    ]
+	maps [ label="Map tile server" ]
+	market [ label="Stock market server" ]
+	user:map -> maps
+	user:products -> supplier
+	user:stock -> market
+}
+=end Graphviz
+=para
+
+The advantages of this approach are
+=begin section
+=config item :bullet«\x2705»
+=item The web page first sent out is static and not changed unless text is modified
+=item Cached data is rendered faster
+=item Multiple data sources can be included
+=item Each source of information will focus on authentication separately
+=item Even if the I<product supplier> is the author of the web page, only the product
+data server needs to be authenticated, and can be developed separately
+=item Page content and data base security are separated
+=end section
+
 
 =end rakudoc
