@@ -19,9 +19,7 @@
 
 <span class="para" id="556a167"></span>A separate [design document](Design.md) shows the workflows. 
 
-> <span class="para" id="c27bc80"></span>To be clear a computer language, such as *RakuDoc*, is indicated as **c-language**, while a human language, such as *English*, is indicated as **h-language**. 
-
-
+> <span class="para" id="c27bc80"></span>To be clear a computer language, such as *RakuDoc*, is indicated as **c-language**, while a human language, such as *English*, is indicated as **h-language**.
 
 <span class="para" id="a8f26d9"></span>It is based on source documents written in a canonical h-language (not necessarily English) and derived documents in other h-languages, all of which are marked up in RakuDoc. 
 
@@ -77,7 +75,7 @@
 
 ----
 
-Rendered from /docs/README.rakudoc/README at 13:26 UTC on 2024-12-22
+Rendered from /docs/README.rakudoc/README at 17:46 UTC on 2024-12-22
 
-Source last modified at 13:25 UTC on 2024-12-22
+Source last modified at 17:45 UTC on 2024-12-22
 
