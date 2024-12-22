@@ -9,7 +9,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 309.75)">
 <title>G3</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-309.75 740.5,-309.75 740.5,4 -4,4"/>
-<text text-anchor="middle" x="368.25" y="-282.75" font-family="Helvetica,Arial,sans-serif" font-size="20.00">Basic flows</text>
+<text text-anchor="middle" x="368.25" y="-282.75" font-family="Helvetica,Arial,sans-serif" font-size="20.00">Headless example</text>
 <!-- source -->
 <g id="node1" class="node">
 <title>source</title>

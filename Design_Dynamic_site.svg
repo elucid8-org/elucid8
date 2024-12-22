@@ -9,7 +9,7 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 140.75)">
 <title>G2</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-140.75 686.5,-140.75 686.5,4 -4,4"/>
-<text text-anchor="middle" x="341.25" y="-113.75" font-family="Helvetica,Arial,sans-serif" font-size="20.00">Basic flows</text>
+<text text-anchor="middle" x="341.25" y="-113.75" font-family="Helvetica,Arial,sans-serif" font-size="20.00">Dynamic example</text>
 <!-- database -->
 <g id="node1" class="node">
 <title>database</title>

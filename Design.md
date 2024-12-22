@@ -11,6 +11,7 @@
 <a href="#Website_deployment">Website deployment</a>   
 &nbsp;&nbsp;- <a href="#Dynamic_site">Dynamic site</a>   
 &nbsp;&nbsp;- <a href="#Headless_page_with_micro-services">Headless page with micro-services</a>   
+<a href="#Navigation_and_information">Navigation and information</a>   
 
 
 <div id="Introduction"></div>
@@ -49,9 +50,9 @@
 
 
 
-&nbsp;&nbsp;✘ A host site is needed for the server and the database  
-&nbsp;&nbsp;✘ Requesting page fragments and data requests complicates the server logic  
-&nbsp;&nbsp;✘ If most of the webpage is unchanged, it could be cached, thus increasing the response speed for the user  
+&nbsp;&nbsp;❎ A host site is needed for the server and the database  
+&nbsp;&nbsp;❎ Requesting page fragments and data requests complicates the server logic  
+&nbsp;&nbsp;❎ If most of the webpage is unchanged, it could be cached, thus increasing the response speed for the user  
 
 <span class="para" id="964a3cd"></span>After the development of interactive elements such as web sockets, a web page can be created that contains javascript libraries and named ` <div> ` elements such that data can be drawn from arbitrary data sources not located on the host that published the web page. Consequently, the entire page can be cached. 
 
@@ -74,7 +75,69 @@
 &nbsp;&nbsp;✅ <span class="para" id="b8894c5"></span>Even if the *product supplier* is the author of the web page, only the product data server needs to be authenticated, and can be developed separately 
 
   
-&nbsp;&nbsp;✅ Page content and data base security are separated
+&nbsp;&nbsp;✅ Page content and data base security are separated  
+
+
+<div id="Navigation and information"></div><div id="Navigation_and_information"></div>
+
+## Navigation and information
+<span class="para" id="279a05d"></span>The aim is for the language of the menus and user controls (the UI or User Interface or Navigation) to be changeable without changing the language of the content, and vice versa. 
+
+<span class="para" id="480fa30"></span>This means that: 
+
+
+
+&nbsp;&nbsp;🌍 the translation of each item of the navigation needs to be included/or available in each page of content  
+&nbsp;&nbsp;🌍 <span class="para" id="fa02b98"></span>since [plugins](Plugin policy) may provide UI information, there needs to be an interface for possible translations so that a new derivative set can be made. 
+
+  
+&nbsp;&nbsp;🌍 In addition to text elements, localisation requires changes in the presentation of time, currency, etc.  
+<span class="para" id="59d7e0c"></span>Some standarisation is needed for defining languages, both navigation and content. 
+
+
+
+&nbsp;&nbsp;🌍 Languages will be denoted using the ISO 639 2-letter codes  
+&nbsp;&nbsp;🌍 Alternative words/spellings may be supplied using ISO 3166-1 2-letter codes  
+<span class="para" id="f45ea30"></span>The following is the first approach: 
+
+
+
+&nbsp;&nbsp;🌍 All UI will be provided by plugins  
+&nbsp;&nbsp;🌍 <span class="para" id="657489e"></span>Templates for user-facing UI content may only contain `ui-token`s. 
+
+  
+&nbsp;&nbsp;🌍 <span class="para" id="6e785b5"></span>A `ui-token` must be unique across the web-site, so typically plugins will append their names to the token name. 
+
+  
+&nbsp;&nbsp;🌍 <span class="para" id="5e6146a"></span>A `ui-token` is either a string, or a callable that evaluates to a string. 
+
+  
+&nbsp;&nbsp;🌍 <span class="para" id="4354301"></span>Plugins will generate a hash called `ui-tokens` with the structure `2-letter -> TOKEN -> 'string'`, for example, 
+
+
+```
+    ui-tokens => %(
+        en => %(
+           COL => 'colour',
+           MENU => 'Menu',
+           SEARCH => 'Search',
+           MODIFIED => -> $mod-inst { sprintf( "Modified at %02d:%02d on %s", .hour, .minute, .dd-mm-yyyy) with $mod-inst.DateTime }
+       ),
+       en-US %(
+           COL => 'color',
+           MODIFIED => -> $mod-inst { sprintf( "Modified at %02d:%02d on %s", .hour, .minute, .mm-dd-yyyy) with $mod-inst.DateTime }
+       ),
+       cy => %(
+           COL => 'lliw',
+           MENU => 'Menw',
+           SEARCH => 'Chwilia',
+       ),
+   ),
+```  
+&nbsp;&nbsp;🌍 <span class="para" id="a9f1f3b"></span>When a `ui-token` is missing in a derived language is missing, the `ui-token` in the canonical language is used. 
+
+  
+&nbsp;&nbsp;🌍 <span class="para" id="2828cce"></span>When a `ui-token` in a regional variant is missing, it is replaced by the `ui-token` in the two-letter hash of the derived language
 
 
 
@@ -82,7 +145,7 @@
 
 ----
 
-Rendered from /docs/Design.rakudoc/Design at 12:26 UTC on 2024-12-21
+Rendered from /docs/Design.rakudoc/Design at 22:46 UTC on 2024-12-21
 
-Source last modified at 12:25 UTC on 2024-12-21
+Source last modified at 22:45 UTC on 2024-12-21
 
