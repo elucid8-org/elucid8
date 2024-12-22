@@ -325,6 +325,8 @@ C«2-letter -> TOKEN -> 'string'», for example,
 language is used.
 =item When a C<ui-token> in a regional variant is missing, it is replaced by the C<ui-token> in the
 two-letter hash of the derived language
+=item A plugin must check for a R<ui-tokens> hash in some specified directory and used it.
+
 
 =end section
 
