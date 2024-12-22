@@ -17,10 +17,10 @@ L<Link back to README|README.*>
 There will be several separate workflows, which will be included in the diagram below.
 In addition, there will be several entry-points.
 But for the time being the following is a first approximation:
-=begin Graphviz :caption<Flow diagram> :headlevel(2)
+=begin Graphviz :caption<Framework flow diagram> :headlevel(2)
 digraph G1 {
     graph [
-		label = "Basic flows\n\n"
+		label = "Overall flows\n\n"
 		labelloc = t
 		fontname = "Helvetica,Arial,sans-serif"
 		fontsize = 20
@@ -28,49 +28,67 @@ digraph G1 {
 		newrank = true
 	]
 	node [
-		style=filled
+		style=rounded
 		shape=rect
 		pencolor="#00000044" // frames color
-		fontname="Helvetica,Arial,sans-serif"
-		shape=plaintext
+		fontname="Times"
+		bgcolor="white"
 	]
 	edge [
 		arrowsize=0.5
 		fontname="Helvetica,Arial,sans-serif"
 		labeldistance=3
 		labelfontcolor="#00000080"
-		penwidth=2
-		style=dotted // dotted style symbolizes data transfer
+		penwidth=4
+		style=dotted
 	]
-    navigation [
+    new_navigation [
         label="Create navigation\nRakuDocs"
-    ]
-    other [
-        label="Documentation\nin other formats"
     ]
     existing [
         label="Existing RakuDoc sources\n(eg. docs.raku.org)"
     ]
-    { rank=same navigation existing other }
-    canonical [
-        label="Create & pool\ncanonical sources"
+    other [
+        label="Documentation\nin other formats"
     ]
-    other -> canonical [ label="convert\nto\nRakuDoc" ]
-    existing -> canonical [ label="pull\nfrom\nrepo" ]
+    converted [ label="Repo of converted sources"]
+    other -> converted [ label="convert\nto\nRakuDoc" ]
     new_derivative [
         label="add new\nderivative language\nfrom canonical\n& navigation"
     ]
+    navigation [
+        label="Pool navigation\nRakuDocs"
+    ]
+    new_navigation -> navigation
+    canonical [
+        label="Pool\ncanonical sources"
+    ]
+    converted -> canonical [ label="pull\nfrom\nrepo" ]
+    existing -> canonical [ label="pull\nfrom\nrepo" ]
     new_derivative -> derivative
-    navigation -> startup
     derivative [
         label="pool\nderivative language sources"
     ]
     startup [
         label="Obtain last edit dates\nfor all blocks in all\npools"
     ]
-    navigation -> new_derivative
-    canonical -> new_derivative
+    navigation -> new_derivative [
+		style=""
+		penwidth=2
+		arrowtail=odiamond
+		arrowhead=odiamond
+		color="#00000088"
+	]
+    canonical -> new_derivative [
+		style=""
+		penwidth=2
+		arrowtail=odiamond
+		arrowhead=odiamond
+		color="#00000088"
+	]
     derivative -> startup
+    navigation -> startup
+    canonical -> startup
     register [
         label="Generate Document Registry"
     ]
@@ -86,10 +104,30 @@ digraph G1 {
     edit [
         label="Edit sources"
     ]
-    publish -> edit [ label="edit suggestions public" ]
+    publish -> edit [
+        label="public\nedits"
+        minlen=3
+    ]
     edit -> derivative [ label="authorisation by\nderivative language" ]
     edit -> canonical [ label="authorisation by\ndeveloper" ]
-   { rank=same publish edit }
+    { rank=same new_navigation other }
+    { rank=same converted existing }
+    { rank=same navigation canonical derivative }
+    { rank=same publish edit }
+    subgraph build {
+        label = "Build"
+		labelloc = b
+		fontname = "Helvetica,Arial,sans-serif"
+        startup
+        register
+        generate
+        publish
+        cluster=true
+        bb=2
+        color="blue"
+        style="rounded"
+        bgcolor="#ECEFF1"
+    }
 }
 =end Graphviz
 
