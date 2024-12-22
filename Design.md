@@ -7,7 +7,7 @@
 
 <a href="#Introduction">Introduction</a>   
 <a href="#Workflow">Workflow</a>   
-&nbsp;&nbsp;- <a href="#Flow_diagram">Flow diagram</a>   
+&nbsp;&nbsp;- <a href="#Framework_flow_diagram">Framework flow diagram</a>   
 <a href="#Website_deployment">Website deployment</a>   
 &nbsp;&nbsp;- <a href="#Dynamic_site">Dynamic site</a>   
 &nbsp;&nbsp;- <a href="#Headless_page_with_micro-services">Headless page with micro-services</a>   
@@ -25,10 +25,10 @@
 <span class="para" id="7c74ec9"></span>There will be several separate workflows, which will be included in the diagram below. In addition, there will be several entry-points. But for the time being the following is a first approximation: 
 
 
-<div id="Flow diagram"></div><div id="Flow_diagram"></div>
+<div id="Framework flow diagram"></div><div id="Framework_flow_diagram"></div>
 
-## Flow diagram
-![](Design_Flow_diagram.svg)
+## Framework flow diagram
+![](Design_Framework_flow_diagram.svg)
 <div id="Website deployment"></div><div id="Website_deployment"></div>
 
 ## Website deployment
@@ -145,7 +145,7 @@
 
 ----
 
-Rendered from /docs/Design.rakudoc/Design at 22:46 UTC on 2024-12-21
+Rendered from /docs/Design.rakudoc/Design at 12:50 UTC on 2024-12-22
 
-Source last modified at 22:45 UTC on 2024-12-21
+Source last modified at 12:50 UTC on 2024-12-22
 
