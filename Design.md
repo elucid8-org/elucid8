@@ -12,6 +12,10 @@
 &nbsp;&nbsp;- <a href="#Dynamic_site">Dynamic site</a>   
 &nbsp;&nbsp;- <a href="#Headless_page_with_micro-services">Headless page with micro-services</a>   
 <a href="#Navigation_and_information">Navigation and information</a>   
+&nbsp;&nbsp;- <a href="#First_approach">First approach</a>   
+&nbsp;&nbsp;- <a href="#Revised_approach">Revised approach</a>   
+<a href="#Collection_of_sources">Collection of sources</a>   
+&nbsp;&nbsp;- <a href="#First_approach_0">First approach</a>   
 
 
 <div id="Introduction"></div>
@@ -94,7 +98,13 @@
 
 &nbsp;&nbsp;🌍 Languages will be denoted using the ISO 639 2-letter codes  
 &nbsp;&nbsp;🌍 Alternative words/spellings may be supplied using ISO 3166-1 2-letter codes  
-<span class="para" id="f45ea30"></span>The following is the first approach:
+
+<div id="First approach"></div><div id="First_approach"></div>
+
+### First approach
+<span class="para" id="03d81eb"></span>The following is the first design approach: 
+
+
 
 &nbsp;&nbsp;🌍 All UI will be provided by plugins  
 &nbsp;&nbsp;🌍 <span class="para" id="657489e"></span>Templates for user-facing UI content may only contain `ui-token`s.  
@@ -124,7 +134,60 @@
 ```  
 &nbsp;&nbsp;🌍 <span class="para" id="a9f1f3b"></span>When a `ui-token` is missing in a derived language is missing, the `ui-token` in the canonical language is used.  
 &nbsp;&nbsp;🌍 <span class="para" id="2828cce"></span>When a `ui-token` in a regional variant is missing, it is replaced by the `ui-token` in the two-letter hash of the derived language  
-&nbsp;&nbsp;🌍 <span class="para" id="083d5c0"></span>A plugin must check for a **__ui-tokens__** hash in some specified directory and used it.
+&nbsp;&nbsp;🌍 <span class="para" id="083d5c0"></span>A plugin must check for a **__ui-tokens__** hash in some specified directory and used it.  
+
+<div id="Revised approach"></div><div id="Revised_approach"></div>
+
+### Revised approach
+<span class="para" id="d2aba99"></span>The first approach implies each plugin contains all the translations. The disadvantages are: 
+
+
+
+&nbsp;&nbsp;🌍 updating text changes to tokens requires locating the plugin for a token, but tokens can be added by multiple plugins  
+&nbsp;&nbsp;🌍 adding a new UI h-language requires a modification to each plugin  
+<span class="para" id="59c7dd5"></span>So the revised approach modifies the first approach as follows: 
+
+<span class="para" id="fa15af5"></span>Each plugin defines a hash with keys for the UI tokens it uses in its templates. The value of the token is the **draft** canonical substitution *only*. 
+
+<span class="para" id="e38526a"></span>The Elucid8 plugin UI-Switch loads a dictionary and 
+
+
+
+&nbsp;&nbsp;🌍 determines whether a new key has been defined,  
+&nbsp;&nbsp;🌍 adds the new key to the dictionary  
+&nbsp;&nbsp;🌍 has JS code that loads the dictionary with the HTML page  
+&nbsp;&nbsp;🌍 the JS code substitutes all instances of the ui-tokens with their h-language equivalents  
+<span class="para" id="9c72a85"></span>Changes to each language can be made in the dictionary file, not in the plugins. Even the canonical language text can be changed by amending the dictionary file. A new UI language can be added without affecting the other plugins. 
+
+<span class="para" id="a1391ef"></span>A new plugin can be written with new UI tokens. 
+
+
+<div id="Collection of sources"></div><div id="Collection_of_sources"></div>
+
+## Collection of sources
+<span class="para" id="e79cee6"></span>Elucid8-build expects RakuDoc sources under a single root directory, named with the config key `sources`, and sub-directories for each language. 
+
+<span class="para" id="3441a14"></span>However, generally 
+
+
+
+&nbsp;&nbsp;🌍 source files for each language may be held in other Git repos.  
+&nbsp;&nbsp;🌍 source files for each language may be in multiple directories.  
+&nbsp;&nbsp;🌍 all source files may have changes  
+&nbsp;&nbsp;🌍 rendered versions of derived sources files need to contain information about changes to canonical files  
+&nbsp;&nbsp;🌍 rendered versions of canonical files need to contain information about derived sources (to allow for linking from canonical to derived section by section)  
+
+<div id="First approach"></div><div id="First_approach_0"></div>
+
+### First approach
+
+
+&nbsp;&nbsp;🌍 The website config file contains information about each repository, and  
+&nbsp;&nbsp;🌍 <span class="para" id="1eb4754"></span>the name of an **original** directory  
+&nbsp;&nbsp;🌍 A collection stage is run before a build, during which:  
+&nbsp;&nbsp;🌍 <span class="para" id="5b6bbbb"></span>Each repo is spawned or renewed in the **original** directory  
+&nbsp;&nbsp;🌍 Each repo is analysed for new or modified files, to be used by Elucid8-build  
+<span class="para" id="6291cf5"></span>The file information will be kept in the L10N directory
 
 
 
@@ -132,7 +195,7 @@
 
 ----
 
-Rendered from /docs/Design.rakudoc/Design at 17:49 UTC on 2024-12-22
+Rendered from /docs/Design.rakudoc/Design at 20:18 UTC on 2025-03-15
 
-Source last modified at 17:48 UTC on 2024-12-22
+Source last modified at 20:17 UTC on 2025-03-15
 
