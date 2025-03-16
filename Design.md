@@ -187,7 +187,7 @@
 &nbsp;&nbsp;🌍 A collection stage is run before a build, during which:  
 &nbsp;&nbsp;🌍 <span class="para" id="5b6bbbb"></span>Each repo is spawned or renewed in the **original** directory  
 &nbsp;&nbsp;🌍 Each repo is analysed for new or modified files, to be used by Elucid8-build  
-<span class="para" id="6291cf5"></span>The file information will be kept in the L10N directory
+<span class="para" id="4c66e93"></span>The file information will be kept in the `Misc` directory
 
 
 
@@ -195,7 +195,7 @@
 
 ----
 
-Rendered from /docs/Design.rakudoc/Design at 20:18 UTC on 2025-03-15
+Rendered from /docs/Design.rakudoc/Design at 09:14 UTC on 2025-03-16
 
-Source last modified at 20:17 UTC on 2025-03-15
+Source last modified at 09:13 UTC on 2025-03-16
 
