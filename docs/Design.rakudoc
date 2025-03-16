@@ -380,7 +380,7 @@ by section)
 =item Each repo is spawned or renewed in the B<original> directory
 =item Each repo is analysed for new or modified files, to be used by Elucid8-build
 
-The file information will be kept in the L10N directory
+The file information will be kept in the C<Misc> directory
 
 =end section
 
